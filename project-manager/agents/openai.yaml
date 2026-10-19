@@ -1,4 +1,0 @@
-interface:
-  display_name: "Project Manager"
-  short_description: "Coordinate handoffs, approvals, blockers, and delivery"
-  default_prompt: "Use $project-manager to assess the current delivery evidence, route the next handoff, and track approvals, blockers, and feedback through verified ship completion."

@@ -9,7 +9,7 @@
 
 - **Reviewed baseline:** $Exact design version and repository revision or retained snapshot.$
 - **Method and coverage:** $Independent reviewer or self-review, applicable criteria, reviewed areas, and gaps.$
-- **Attempts and completed reviews:** $Reviewer requests used out of 3; completed reviews. Report self-review separately; it does not count as an independent reviewer request.$
+- **Attempts and completed reviews:** $Review attempts used out of 3; completed reviews. Report self-review separately; it does not count as an independent reviewer request.$
 - **Open findings and approval impact:** $Linked R IDs, blocking reasons, or None. State any incomplete coverage.$
 
 ## Attempts
@@ -31,8 +31,8 @@
 - **Problem:** $Defect or unresolved question.$
 - **Basis:** $Evidence or counterexample.$
 - **Consequence:** $Effect on user goals, product behavior, observable results, understanding, or approval evidence.$
-- **Remedy:** $Product correction or question to answer. Link its Q record when clarification is needed. Identify owner and stage for technical follow-up.$
+- **Remedy:** $Product correction or question to answer. Link its Q record when clarification is needed.$
 - **Approval impact:** $Blocks approval: Yes / No, with reason.$
-- **History and verification:** $Attempt first raised, later attempts, corrections and affected revisions, and verification evidence. For RESOLVED, cite the reviewer's supporting evidence. For EXCLUDED, cite the user's scope exclusion and its application to the design. Otherwise retain missing evidence and the next step.$
+- **History and verification:** $Attempt first raised, later attempts, corrections and affected revisions, and verification evidence. For RESOLVED, cite the supporting verification evidence. For EXCLUDED, cite the user's scope exclusion and its application to the design. Otherwise retain missing evidence and the next step.$
 
 <!-- Repeat findings with stable R IDs. A later attempt updates the same finding and retains its history. Do not copy Q answers here; link their records. -->

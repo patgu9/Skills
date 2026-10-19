@@ -1,75 +1,50 @@
 # Product review
 
-Before delivery, use [Document Review](../../document-review/SKILL.md) to check product documents, review reports, feedback responses, and handoff summaries against the applicable criteria below. If an independent reviewer is available and authorized, use that reviewer before presenting a completed design for approval. Otherwise perform self-review and report why independent review was not run. Review does not grant approval.
-
-## Inputs and findings
-
-Review the full current Design Doc, its exact version and revision or retained snapshot, existing supporting records, and relevant evidence. Include the template, document contract, applicable discovery guidance, prior designs, and earlier findings and remedies. Read the materials directly.
-
-Use the [review template](../assets/review-template.md) for finding fields. Give each finding a precise location, defect or unknown, basis, consequence, remedy, and approval impact. Seek contradictions and counterexamples. Separate wording defects, unknown facts, and product decisions. In later attempts, assess new, unresolved, and resolved findings against the revised evidence.
+In **Step 4**, evaluate `product-design.md` and any existing supporting files (`product-design-questions.md`, `product-design-review.md`) against the checks below. If an independent reviewer is available, run an independent review before presenting the design for approval. Otherwise perform a self-review and record why independent review was not run. Review verifies quality and completeness; only the user grants approval.
 
 ## Product review boundary
 
-Review user goals, value, behavior, and observable results, including relevant failure and correction paths. Stop when the product behavior and acceptance criteria are clear enough to assess. Leave implementation choices to technical design.
-
-Route technical questions through the caller's [established route](document-contract.md#inputs-and-invocation-context), retaining IDs, needed evidence, owner, and stage. Split mixed findings into product consequences and technical follow-up. Missing schemas, transactions, storage mechanisms, or API protocols alone do not block product approval.
-
-A technical constraint can block approval when concrete evidence shows that a product promise conflicts with stated constraints. Identify the promise, evidence, and needed product decision. An unverified mechanism does not establish that conflict; product approval does not prove feasibility.
+Evaluate user goals, value over alternatives, workflow coherence, scope discipline, and observable acceptance criteria (including boundary and failure paths). Leave technical implementation details (schemas, storage engines, internal APIs) out of scope unless concrete evidence shows that a product promise conflicts with a stated constraint.
 
 ## Final review
 
-Apply relevant criteria across the design and existing supporting files. Do not require every discovery method for every change.
+Evaluate each area across the current Design Doc and supporting files:
 
-| Area | Check |
+| Workflow step | Review check |
 | --- | --- |
-| Need and value | The situation, actor, outcome, selected need, and supporting evidence are understandable without the conversation. Current behavior, intent, and hypotheses remain distinct. |
-| Choice and scope | Alternatives serve the same goal. The chosen direction, exclusions, estimate uncertainty, retained complexity, and relevant strategic or adoption constraints have a basis. Apply Occam's Razor. |
-| Journey | Terms, triggers, actor handoffs, product dependencies, and access to value are consistent across Features. Include relevant failures and corrections. |
-| Measurement | Success Criteria represent the outcome, with applicable guardrails, population, units, baseline, target, window, and method. Unknowns retain a way to obtain evidence. Proxies and borrowed benchmarks do not establish success. |
-| Validation | Material assumptions have observable tests, disconfirming results, and affected decisions. The method fits available users and time. Inconclusive evidence stays unresolved. AI claims include representative cases and recovery where relevant. |
-| Decisions | Question states, dependencies, answers, and findings have evidence. Confirmed conclusions reached the design; unresolved effects and approval blockers remain visible. |
-| Delivery | Next Action is concrete. Version, approval, retained baseline, and handoff match the contract. The work stays within scope. |
-
-Apply [Technical Writing](../../technical-writing/SKILL.md) for clarity and terminology, then the structural checks below.
+| **Step 1: Problem & Value** | Actor, situation, unmet need, workaround, and value over alternatives (`What Makes This Cool`) are clear without the conversation. Facts, intent, and hypotheses remain distinct. |
+| **Step 2: Approach & Scope** | At least two approaches serve the same goal. Included Features connect to actor behavior changes, exclusions have reasons, assumptions link to validation plans, and **Next Action** is concrete. |
+| **Step 2: Workflow Journey** | **How It Works** steps, triggers, actor handoffs, terms, and shared dependencies match the Feature blocks and cover failure and recovery paths. |
+| **Step 3: Success Criteria** | Each `SC<n>` defines a real outcome, pass condition, guardrails, units, population, window, and verification method (or a `Builder` trial). Unknowns link to `Q<n>`. |
+| **Step 3: Rules & Examples** | Each Feature is a user capability with a `value → role → action` User Story linked to `SC<n>`. Concrete `F<n>-E<m>` examples cover every `F<n>-AC<m>` rule, including boundaries and rejections. No policies are invented. |
+| **Decisions & Language** | Confirmed `Q<n>` answers are applied to `product-design.md`; unresolved items are marked `TBD (Q<n>)` with blocker status. Prose follows [Technical Writing](../../technical-writing/SKILL.md). |
 
 ## Structural validation
 
-Check the [document contract](document-contract.md) and applicable templates:
+Verify compliance with the [document contract](document-contract.md) and templates:
 
-- Heading order, metadata, labels, table columns, populated fields, and removal of placeholders and instructional comments. Respect the user's replacement template.
-- Unique, stable Success Criteria, Feature, Rule, and Example IDs. Each User Story links to defined SC IDs; each rule has an example; each example references valid rules and supplies facts, action, and observable results. Check units, boundaries, exceptions, and unchanged state.
-- Relative links and anchors, stable Q/R IDs, valid question states, dependencies, TBD links, and explicit blockers. Check review attempts, revisions, finding history, and coverage. Keep full Q and review logs out of the main design.
-- Current Version and Approval, accessible prior baselines and approval evidence, and the required handoff fields.
-
-Structural validity does not establish semantic correctness or approval. A DRAFT can contain pending behavior or TBDs linked to questions. If a provisional Feature would require invented content, save an incomplete DRAFT and report unmet requirements.
+- Heading order, metadata fields (`Status`, `Version`, `Approval`, `Mode`, `Date`, `Stage`, `Supporting Records`), and table columns match [design-doc-template.md](../assets/design-doc-template.md). Placeholders and HTML comments are removed.
+- IDs (`SC<n>`, `F<n>`, `F<n>-AC<m>`, `F<n>-E<m>`, `Q<n>`, `R<n>`) are unique, stable, and never reused after deletion.
+- Relative links between `product-design.md`, `product-design-questions.md`, and `product-design-review.md` resolve cleanly. Full question and review histories stay in the supporting files.
+- `Version`, `Status`, `Approval`, and any prior snapshots in `history/product-design/v<n>.md` match [version and status rules](document-contract.md#versions-and-approval-evidence).
 
 ## Review loop — maximum three attempts
 
-An attempt is one request sent to a reviewer. Every request counts, even if it fails. Allow at most three attempts.
+An attempt is one complete review pass. Allow at most **three** attempts.
 
-1. Send the completed draft for review.
-2. Stop this review loop before making further edits if any condition applies:
-
-   - No findings remain.
-   - The third attempt is complete.
-   - An issue remains after a correction, without meaningful progress.
-
-   If a finding needs evidence or a user decision, retain it and use the [clarification protocol](discovery-methods.md#clarify-decisions-and-terms). Record or reopen its question. Pause reviewer requests and dependent work; continue independent investigation or drafting. After resolution or an agreed scope exclusion, return to step 3 only if attempts remain and the issue has progressed.
-3. Apply corrections within the agreed design, including any answers or exclusions from clarification. For a material change, apply the contract's [status and approval rules](document-contract.md#status-and-approval).
-4. Recheck affected content under the shared [document validation method](../../document-review/references/validation-guide.md), including the [structural checks](#structural-validation). Send the full revision and prior findings for the next review attempt. Mark a finding resolved only when the reviewer's evidence supports that conclusion.
-
-If review fails, times out, or returns invalid output, stop the review loop. Report incomplete review coverage. Keep usable findings and concrete evidence for issues that remain unresolved.
-
-Keep prior findings and the total attempt count. Answering a question does not reset the three-attempt limit.
-
-If attempts are exhausted with unresolved findings or incomplete coverage, report those limits. A third review can finish with complete coverage and no remaining findings. Answering a question alone does not complete it.
+1. **Run review pass:** Evaluate the draft against [Final review](#final-review) and [Structural validation](#structural-validation). Record any defects or gaps as stable `R<n>` findings in `product-design-review.md` using [review-template.md](../assets/review-template.md).
+2. **Evaluate stop conditions:** Stop the review loop immediately if any condition below applies:
+   - **Zero open findings remain:** Set `Status` to `IN_REVIEW`.
+   - **Attempt 3 is complete:** Report any remaining findings to the user and keep `Status: DRAFT`.
+   - **A finding requires a user decision or missing fact:** Link a `Q<n>` record in `product-design-questions.md` and pause the review loop. Ask the user via the [clarification protocol](discovery-methods.md#clarification-protocol), then resume at step 3 if attempts remain.
+   - **No progress:** The same defect persists after a correction attempt.
+3. **Apply remedies:** Fix wording, structure, or internal inconsistencies within the agreed product decisions. If a fix alters a previously delivered version, follow [version rules](document-contract.md#versions-and-approval-evidence).
+4. **Verify fixes:** Re-evaluate modified sections and open `R<n>` findings in the next attempt. Mark an `R<n>` finding `RESOLVED` only when verification confirms the fix in `product-design.md`.
 
 ## Record and approval
 
-Use `product-design-review.md` and the [review template](../assets/review-template.md). Give each finding a stable `R<n>` ID and heading. Never renumber or reuse IDs. Update recurring findings in place; retain resolved and excluded records, corrections, verification evidence, and attempt history.
+Maintain `product-design-review.md` using [review-template.md](../assets/review-template.md):
 
-Record each request's exact input version and revision or snapshot, reviewer, result, coverage, and findings, including failures. Identify author self-review separately; it is not an independent review or reviewer request.
-
-If clarification is needed, link a Q record in both directions. Keep the finding open until verification supports resolution or the user explicitly excludes its scope. Put corrections and brief unresolved effects in the design; keep full records here. An answer or edit alone does not resolve a finding.
-
-Report independence, attempts, completed reviews, unresolved findings, and coverage gaps under the shared [reporting rules](../../document-review/references/validation-guide.md#report-the-result). Apply the contract's [status and approval rules](document-contract.md#status-and-approval).
+- Assign each finding a stable `R<n>` ID. Record its location, problem, basis, consequence, remedy, approval impact (`Blocks approval: Yes / No`), and verification history. Never renumber or reuse `R<n>` IDs.
+- Record each attempt's reviewed version, method (`Independent reviewer` or `Self-review`), coverage, and outcome.
+- Apply the contract's [status and approval rules](document-contract.md#status-and-approval) after the loop concludes.

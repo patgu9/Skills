@@ -1,4 +1,0 @@
-interface:
-  display_name: "Code Review"
-  short_description: "Review task PRs with OCR and track corrections"
-  default_prompt: "Use $code-review to independently review this task PR with open-code-review, assess findings and coverage, and hand off an explicit conclusion or correction request."

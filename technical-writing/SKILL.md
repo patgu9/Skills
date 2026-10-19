@@ -17,7 +17,7 @@ Read the existing text before revising it. Distinguish confirmed content, propos
 
 Read the [writing guide](references/writing-guide.md) to select content, order explanations, and choose useful examples. For English prose, also read [English controls](references/english-controls.md) and apply them after organizing the content. For other languages, use the writing guide without imposing English grammar or word counts.
 
-Use the task's existing content structure and decision process. This Skill provides writing methods; the calling workflow owns document formats, domain rules, and approval. Flag unresolved meaning instead of inventing facts or settling decisions through a wording change.
+Use the task's existing content structure and decision process. This Skill provides writing methods; the task's template and domain rules own document formats and approval. Flag unresolved meaning instead of inventing facts or settling decisions through a wording change.
 
 ## 3. Check the writing and deliver
 

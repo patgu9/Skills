@@ -1,4 +1,0 @@
-interface:
-  display_name: "Code Integration"
-  short_description: "Merge accepted task PRs and verify the QA candidate"
-  default_prompt: "Use $code-integration to assess these accepted task PRs, integrate eligible changes, and deliver a verified merged candidate to QA or a supported blocker."

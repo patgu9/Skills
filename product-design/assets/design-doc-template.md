@@ -9,15 +9,11 @@
 
 - **Supporting Records:** $Relative links to product-design-questions.md and product-design-review.md when they exist; otherwise mark each as Not started.$
 
-<!-- Follow the [document contract](../references/document-contract.md) for structure, content, and approval. Use the [Technical Writing Skill](../../technical-writing/SKILL.md) for wording. Replace placeholders and remove comments. Omit only optional fields. -->
-
-<!-- Follow this Skill's [saving rules](../references/document-contract.md#saving) for the change directory and product-design.md filename. -->
-
-<!-- Follow [versions and approval evidence](../references/document-contract.md#versions-and-approval-evidence) when revising. Approval stays Pending until the human approves this version. Deliver the [handoff summary](../references/document-contract.md#handoff-summary) outside this document. -->
+<!-- Follow the [document contract](../references/document-contract.md) for saving, structure, versions, and approval. Use [Technical Writing](../../technical-writing/SKILL.md) for wording. Replace placeholders and remove comments. Omit only optional fields. -->
 
 ### Glossary
 
-<!-- Define unfamiliar terms and abbreviations. Keep one term per concept. State the intended meaning when a term has several common meanings. -->
+<!-- Step 1: Define unfamiliar domain terms and abbreviations. Keep one term per concept. -->
 
 | Term | Definition |
 |-----|-----|
@@ -40,52 +36,46 @@ $Describe the value compared with actual alternatives, including the current app
 
 #### Approaches Considered
 
-<!-- Compare different ways to achieve the same user goal using the same attributes. -->
+<!-- Step 2: Compare at least two meaningful ways to achieve the same goal. Follow [approach comparison](../references/discovery-methods.md#compare-approaches). -->
 
 | Approach | Core Idea and Benefits | Main Costs and Risks |
 |-----|-----|-----|
-| A: $Way to achieve the user goal$ | $Describe the user journey, trigger, value, and reuse$ | $Effort: S/M/L/XL. Risk: Low/Medium/High. Drawbacks. If not selected: reason$ |
-| B: $Different way to achieve the same goal$ | $Describe the different user journey, trigger, value, and reuse$ | $Effort: S/M/L/XL. Risk: Low/Medium/High. Drawbacks. If not selected: reason$ |
-
-<!-- Follow [approach comparison](../references/discovery-methods.md#compare-approaches). State the basis and uncertainty of estimates. -->
+| A: $Way to achieve the user goal$ | $Describe the user journey, trigger, behavior change, value, and reuse$ | $Effort: S/M/L/XL. Risk: Low/Medium/High. Drawbacks. If not selected: reason$ |
+| B: $Different way to achieve the same goal$ | $Describe the different user journey, trigger, behavior change, value, and reuse$ | $Effort: S/M/L/XL. Risk: Low/Medium/High. Drawbacks. If not selected: reason$ |
 
 #### Recommended Approach
 
 **Recommendation:** $Name the chosen approach. Explain why it serves the goal, the relevant strategic tradeoff, and retained complexity. If the decision is unresolved, mark it as pending.$
 
-**How It Works:** $Number the workflow steps. For each step, name the actor, action, and result. Include the trigger, handoffs between actors, how the product reaches users, and shared dependencies where relevant. Link SC and Feature IDs to show how the workflow serves the goal.$
+**How It Works:** $Number the end-to-end workflow steps. For each step, name the actor, action, and observable result. Include the trigger, handoffs between actors, how the product reaches users, and shared dependencies where relevant. Link SC and Feature IDs.$
 
 **Scope:** $State the initial audience and smallest useful outcome. List included Feature IDs. State exclusions or deferrals and their reasons. Include the costs of future changes where relevant.$
 
 **Assumptions and Limits:**
 
-$State only current premises, material assumptions, and limits needed to understand this design. State unresolved product effects and approval blockers briefly, with links to Q or finding records. Use None if there are no material assumptions or limits.$
-
-<!-- Put full Q records, management dependencies, and validation follow-up in product-design-questions.md. Put review attempts and findings in product-design-review.md. Keep confirmed conclusions in the relevant design sections, and mark pending behavior beside the affected rule or outcome. Follow [content placement](../references/document-contract.md#content-placement). -->
+$State only current premises, material assumptions, and limits needed to understand this design. State unresolved product effects and approval blockers briefly, with links to Q or R records. Use None if there are no material assumptions or limits.$
 
 **Next Action:** $Give one concrete action and its observable result in one short sentence. For Startup: validate demand or a critical assumption. For Builder: try a usable outcome. Recommend the action without implementing it.$
 
 #### Success Criteria
 
+<!-- Step 3: Follow [define Success Criteria](../references/discovery-methods.md#define-success-criteria). Builder may use an observable task or demonstration instead of numerical targets. -->
+
 | ID | Desired Outcome and Pass Condition | Measurement Context and Method |
 |-----|-----|-----|
 | SC1 | $State the outcome and pass condition. For quantitative goals: metric definition, baseline, target, and units. Link TBDs to open questions$ | $State the observed population, time window, and verification method. Explain how to obtain missing baselines$ |
 
-<!-- Builder may use an observable task or demonstration instead of numerical targets. -->
-
-<!-- Apply the contract's Success Criteria rules. Define rate denominators, measurement units, and relevant cohorts. Add SC rows for material guardrails. Distinguish value from proxies and correlation from causal evidence. Do not invent baselines or targets. -->
-
 ### Requirements
 
-<!-- Repeat Features with stable IDs. Follow [Feature rules](../references/document-contract.md#feature-rules) for rule coverage, boundaries, exceptions, pending behavior, and example formats. -->
+<!-- Step 3: Repeat Features with stable IDs. Follow [Feature rules](../references/document-contract.md#feature-rules) for User Story order, rule coverage, boundaries, exceptions, and examples. -->
 
 #### Feature 1 — $Capability Name$
 
 ##### User Story
 
-> In order to $achieve a specific value or goal$,
+> In order to $achieve a specific value or behavioral outcome$,
 > as a $specific role$,
-> I want to $perform a specific action$.
+> I want to $perform a specific capability$.
 
 - **Related Success Criteria:** $Defined SC IDs.$
 - **Boundaries and Dependencies (optional):** $Limits or prerequisites for this Feature.$

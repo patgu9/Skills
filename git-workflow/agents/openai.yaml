@@ -1,4 +1,0 @@
-interface:
-  display_name: "Git Workflow"
-  short_description: "Manage task branches, review diffs, and Git operations"
-  default_prompt: "Use $git-workflow to inspect this task's Git state and complete its authorized branch, review preparation, or integration operation."

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Code Development"
-  short_description: "Implement assigned tasks with tests and review evidence"
-  default_prompt: "Use $code-development to implement this claimed task from its ready task design, verify each behavior, and prepare a focused handoff to independent code review."

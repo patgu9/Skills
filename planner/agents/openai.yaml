@@ -1,4 +1,0 @@
-interface:
-  display_name: "Planner"
-  short_description: "Split approved designs into reviewable development tasks"
-  default_prompt: "Use $planner to turn approved product and overall technical designs into assigned, reviewable tasks with acceptance conditions, dependencies, Git baselines, and estimated review scope."

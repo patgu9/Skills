@@ -2,7 +2,7 @@
 
 Decide what readers need and in what order. For English, then apply the [English controls](english-controls.md).
 
-Write in the language requested by the user or required by the project. The calling workflow owns the format, domain rules, and approval process. A writing edit must preserve decisions, conditions, exceptions, IDs, sources, units, and uncertainty. Resolve missing meaning through that workflow; do not invent facts to make a sentence complete.
+Write in the language requested by the user or required by the project. Preserve the task's format, domain rules, approval state, decisions, conditions, exceptions, IDs, sources, units, and uncertainty. Clarify missing meaning instead of inventing facts to make a sentence complete.
 
 ## Write for the reader
 
@@ -36,7 +36,7 @@ For Skill instructions, address the agent performing the task. Keep routing in `
 
 ## Compress content before sentences
 
-First remove duplication and place detail at the reader's required scope. Then shorten sentences. Follow the calling workflow's artifact rules: link existing evidence, history, and downstream detail instead of creating new documents by default. Keep current conclusions in place and preserve superseded records through accessible references.
+First remove duplication and place detail at the reader's required scope. Then shorten sentences. Link existing evidence, history, and supporting detail instead of creating new documents by default. Keep current conclusions in place and preserve superseded records through accessible references.
 
 Choose one primary representation for each fact or relationship. A diagram can replace a flow description; a table can replace repeated comparisons. Retain the rationale, conditions, exceptions, and uncertainty that the representation does not convey. Do not narrate every arrow or repeat a table in prose.
 
@@ -91,7 +91,7 @@ Use a diagram when it clarifies a relationship or flow. Place it beside the rele
 
 ## Edit in separate passes
 
-Review in this order. These passes supplement the calling workflow's checks.
+Review in this order:
 
 1. **Content and order:** Can readers find the information needed for their goal? Are prerequisites and concepts introduced before use? Apply the [content compression pass](#compress-content-before-sentences); keep each rule in its assigned location.
 2. **Expression:** Check sentence focus, actors, references, examples, and list and table structure. For English, apply [English controls](english-controls.md), including the distinction between instructions and descriptions.
