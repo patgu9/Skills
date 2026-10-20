@@ -1,99 +1,48 @@
-# Technical writing guide
+# Technical Writing Guide (Structure & Cross-Language Controls)
 
-Decide what readers need and in what order. For English, then apply the [English controls](english-controls.md).
+Use these structural patterns and rewrite rules alongside [English controls](english-controls.md). Preserve 100% of the source's technical meaning, conditions, thresholds, IDs, unknowns, and approval status.
 
-Write in the language requested by the user or required by the project. Preserve the task's format, domain rules, approval state, decisions, conditions, exceptions, IDs, sources, units, and uncertainty. Clarify missing meaning instead of inventing facts to make a sentence complete.
+## Order by reader purpose
 
-## Write for the reader
+Keep the document's required template and headings. Within each section, order content so prerequisites and definitions appear before the rules or steps that use them:
 
-Identify the reader's goal, existing knowledge, and missing knowledge. Select content that closes the gap. Distinguish the document's readers from the product's users. Explain unfamiliar concepts; link background that readers can consult separately. Avoid internal shorthand, idioms, and cultural references.
-
-For a substantial draft, use a brief working outline:
-
-- Who will read this, and what do they already know?
-- What must they understand, decide, or do after reading?
-- Which questions must the document answer to support that outcome?
-- What is outside scope but could reasonably be expected here?
-
-Use the answers to write the document; do not add a planning questionnaire to the deliverable. For a small edit, infer these answers from the surrounding text. State the relevant scope and prerequisites in the locations assigned by the template.
-
-## Order explanations by need
-
-Put the main point early. Introduce a concept before relying on it, and give prerequisites before the task that needs them. Add detail where it becomes useful. Use headings that help readers find a question, concept, or task.
-
-Choose the order from the reader's purpose. These are patterns within the required format, not replacement templates:
-
-| Reader's purpose | Useful order |
+| Reader's purpose | Progression |
 | --- | --- |
-| Understand behavior | Main behavior → necessary concepts → concrete example → relevant limits |
-| Complete a task | Goal and prerequisites → steps → expected result → supported recovery actions |
-| Assess a proposal | Problem and proposal status → proposed behavior → evidence and tradeoffs → unresolved decisions |
-| Find a reference detail | Stable name → meaning or contract → inputs and outputs → limits and examples |
+| **Understand behavior** | Main behavior → required concepts → concrete example → operational limits |
+| **Complete a task** | Goal and prerequisites → numbered steps → expected result → recovery actions |
+| **Assess a proposal** | Problem and proposal status → proposed behavior → tradeoffs and evidence → open decisions |
+| **Find a reference detail** | Exact name → contract or meaning → inputs and outputs → limits and example |
 
-Keep required headings, fields, and their order. Improve the explanation within those boundaries. Put optional background behind a link when it interrupts the reader's task. Do not move an exception away from the rule it limits.
+For Skill instructions, keep routing, goals, hard constraints, and gotchas in `SKILL.md`; place lookup tables and detailed reference rules in `references/`. Give each rule one authoritative location.
 
-For Skill instructions, address the agent performing the task. Keep routing in `SKILL.md` and detailed rules in references. Give each rule one authoritative location and link to it where needed.
+## Compress content and choose representations
 
-## Compress content before sentences
+Remove duplication before editing sentences:
 
-First remove duplication and place detail at the reader's required scope. Then shorten sentences. Link existing evidence, history, and supporting detail instead of creating new documents by default. Keep current conclusions in place and preserve superseded records through accessible references.
+- **One representation per fact:** Use a **table** to compare identical attributes across cases, a **diagram** to show flows or state transitions, and **prose** to state rules, conditions, and exceptions.
+- **Introduce before showing:** Precede every diagram, table, or code sample with a sentence that states its main takeaway. Do not narrate every arrow or repeat every table row in prose.
+- **Keep exceptions attached:** Place every exception or boundary condition directly beside the rule it limits.
 
-Choose one primary representation for each fact or relationship. A diagram can replace a flow description; a table can replace repeated comparisons. Retain the rationale, conditions, exceptions, and uncertainty that the representation does not convey. Do not narrate every arrow or repeat a table in prose.
+## Sentence focus and structural rewrites
 
-Keep table cells comparable and brief. Move narrative explanations to a nearby focused paragraph or linked record. Preserve the outcome and important limits in the visible summary. Group repeated qualifications where their scope remains clear; never remove an unknown or approval condition just to meet a length target.
+Split sentences when the actor, stage, or topic changes. Keep conditions attached to the actions they govern:
 
-## Lead each paragraph with its point
-
-Begin with the behavior, result, problem, or decision that the paragraph explains. Follow with the reason or evidence needed to assess it. Keep one topic per paragraph and connect adjacent sentences. Remove preambles, tangents, promotional claims, and repeated recaps.
-
-Prefer an explicit actor and a specific action. Replace vague claims such as “fast” or “easy” with supported measurements or observable behavior. When evidence is missing, retain the uncertainty or open question. Never invent a target to make a claim sound precise.
-
-## Keep terms and references clear
-
-Use one name for each concept. Define unfamiliar terms and acronyms where readers first need them, or link to the existing definition. Avoid new acronyms for terms used only a few times. Preserve proper names, UI labels, and exact identifiers.
-
-Replace an ambiguous pronoun with its intended actor or object. Repeat the noun when several referents are possible. Distinguish different operations: structural validation, assumption validation, and user approval do not mean the same thing. If the source does not establish the distinction, flag the ambiguity instead of choosing a meaning.
-
-## Keep sentences focused
-
-Use four moves to keep sentences focused:
-
-1. Split independent ideas when the sentence changes actor, stage, or topic.
-2. Expose embedded sequences or alternatives as lists when that helps the reader.
-3. Remove filler and replace indirect expressions with direct verbs.
-4. Move side topics into separate sentences; retain clauses that restrict the rule.
-
-Keep a condition with its action. Preserve causes, sequence, alternatives, and simultaneous actions when splitting. Retain “only,” “unless,” “at least,” negation, permission, obligation, and verification limits. These words carry meaning.
-
-| Before | After | Meaning to retain |
+| Before | After | Why it improves clarity |
 | --- | --- | --- |
-| When an import starts, the tool checks access, retrieves the document if access is allowed, and saves it after retrieval succeeds. | When an import starts, the tool checks access. If access is allowed, the tool retrieves the document. After retrieval succeeds, the tool saves the document. | Both gates and the action order |
-| Files that exceed 10 MB are rejected. | Files larger than 10 MB are rejected. | The threshold excludes files of exactly 10 MB |
-| The report, which the team uses in its weekly review, summarizes failed imports. | The report summarizes failed imports. The team uses the report in its weekly review. | The review detail remains available |
+| When an import starts, the tool checks access, retrieves the document if access is allowed, and saves it after retrieval succeeds. | When an import starts, the tool verifies access. If access is allowed, the tool retrieves the document. After retrieval succeeds, the tool saves the document. | Separates three stages, removes `check` as a verb, and puts each gate before its action. |
+| Files that exceed 10 MB are rejected by the gateway. | The gateway rejects files larger than 10 MB. | Uses active voice and states the exact boundary (`> 10 MB`, excluding 10 MB). |
+| The report, which the team uses in its weekly review, summarizes failed imports. | The report summarizes failed imports. The team uses this report in its weekly review. | Splits a non-essential relative clause into a standalone sentence. |
+| To deploy, build the image, push it to the registry, and updating the manifest is also required. | To deploy the service:<br>1. Build the container image.<br>2. Push the image to the registry.<br>3. Update the deployment manifest. | Converts 3+ embedded steps into a numbered list with parallel imperative verbs. |
 
-These examples illustrate edits; they do not introduce product requirements or claim STE compliance. Reread the passage after splitting so that it remains connected prose.
+## Chinese and cross-language controls
 
-## Choose lists, tables, and examples deliberately
+When writing in Chinese (中文) or another non-English language, do not apply English word counts or morphological rules. Enforce these structural equivalents instead:
 
-Use numbered steps when order matters, bullets for unordered items, and tables to compare the same attributes across cases. Keep list items parallel in grammar and detail. Give lists and tables context through a heading, field label, or brief introduction.
-
-Keep a shared condition in the introduction so it applies to every item. State whether alternatives permit one choice or several. Do not turn “A or B” into steps that require both. Group long lists by topic when helpful; preserve required headers and columns. Do not delete rules or examples merely to shorten a table.
-
-Place an example beside the explanation it supports. Use a simple case first, then a boundary or failure case when needed. Keep example terms and values consistent with the documented behavior. Mark hypothetical examples; do not present them as observed results. For code samples, give the necessary setup, input, and expected output. Verify executable samples when permitted; report samples that were not run.
-
-## Keep evidence and visuals useful
-
-State each fact or rule in its assigned location, then use a cross-reference or stable ID. Put source links beside the claims they support. Use descriptive link text and include a retrieval location for opaque IDs. Keep uncertainty, verification limits, and review history in their assigned fields; repeat only when needed to prevent misunderstanding.
-
-For a user-visible failure, explain what failed and the available recovery action. Give a cause only when supported. Never turn “not verified” into success.
-
-Use a diagram when it clarifies a relationship or flow. Place it beside the relevant text and explain its essential meaning there. Give informative images concise alt text; use empty alt text for decorative images.
-
-## Edit in separate passes
-
-Review in this order:
-
-1. **Content and order:** Can readers find the information needed for their goal? Are prerequisites and concepts introduced before use? Apply the [content compression pass](#compress-content-before-sentences); keep each rule in its assigned location.
-2. **Expression:** Check sentence focus, actors, references, examples, and list and table structure. For English, apply [English controls](english-controls.md), including the distinction between instructions and descriptions.
-3. **Meaning:** Compare source and revision. Verify the same actors, actions, conditions, exceptions, sequence, alternatives, negation, limits, units, IDs, evidence, uncertainty, and approval state. A wording change cannot settle an unresolved decision.
-4. **Reader walkthrough:** Follow a documented task or answer the document's main question using only the text and its stated prerequisites. Identify missing steps or unexplained terms. Treat this as a text review, not evidence that the product or procedure works.
+| Dimension | Hard constraint (中文输出规范) | Avoid (反例) | Preferred (正例) |
+| --- | --- | --- | --- |
+| **Dummy verbs (消灭虚化动词)** | Delete bureaucratic dummy verbs (`进行`, `加以`, `予以`, `实现`, `完成`, `开展`, `做出`) before action nouns; use the verb directly. | 系统对请求参数**进行合法性校验**，并**完成日志的记录**。 | 系统**校验**请求参数合法性，并**记录**日志。 |
+| **Explicit actor (显式主语与主动语态)** | Avoid subjectless clauses and vague `被` passives that hide which component or user acts. | 配置文件保存后，连接池**将被重建**。 | 用户保存配置文件后，工作进程**重建**连接池。 |
+| **Modifier depth (拆解多层“的”字长定语)** | Limit chained `的` modifiers to **≤ 2 levels** (equivalent to STE's 3-noun cluster limit). Move qualifiers into clauses or parentheses. | 用于处理来自未认证客户端的并发重连请求的限流器默认阈值 | 限流器的默认阈值（针对未认证客户端的并发重连请求） |
+| **Condition first (条件永远前置)** | Place preconditions (`如果……，`, `当……时，`, `仅当……时，`) before the command or system result. | 请清理本地缓存，如果校验和比对失败。 | **如果**校验和比对失败，**请清理**本地缓存。 |
+| **Exact bounds (精确边界与逻辑词)** | Replace ambiguous bounds (`超过`, `以内`, `左右`) with explicit operators (`大于` `> 10 MB`, `不少于` `≥ 10 MB`, `约`). Lock `因为` (cause), `如果` (condition), and `仅当` (`only if`). | 文件大小**超过** 10 MB 时不予处理。 | 文件**大于 10 MB（`> 10 MB`）**时，网关拒绝该请求。 |
+| **Length limits (句长与段落上限)** | Keep instructions **≤ 30 Chinese chars** (1 action/sentence), descriptions **≤ 45 chars**, and paragraphs **≤ 4 sentences** (topic sentence first). | 一句话内堆叠三四个无主语逗号分句和多重转折。 | 拆分为单句单动作短句；包含 ≥ 3 项时转为垂直列表。 |

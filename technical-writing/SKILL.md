@@ -1,26 +1,40 @@
 ---
 name: technical-writing
-description: Draft or revise technical documentation, requirements, design documents, guides, and Skill instructions. Use Google Technical Writing to select and organize content, then ASD-STE100-based controls to make English precise. Preserve the task's language, format, and decisions.
+description: Use when the user asks to draft, rewrite, tighten, or review technical prose—such as design docs, requirements, API docs, READMEs, runbooks, or Skill instructions—or requests Google Technical Writing or ASD-STE100 style. Do not use for creative writing, marketing copy, or code-only changes.
 ---
 
 # Technical Writing
 
-Help readers understand technical content, make decisions, or complete tasks. Use two passes: decide what to explain and in what order, then control how to express it.
+## Goal
 
-## 1. Establish the writing context
+Produce clear, unambiguous, scan-friendly technical prose using **Google Technical Writing** (structure and paragraph focus) and an **80% ASD-STE100 adaptation** (controlled syntax and single-meaning vocabulary), while preserving 100% of the source's technical facts, logic, language, and required template.
 
-Identify the intended readers, their prior knowledge, and what they need to understand or do after reading. Reuse supplied context and existing terminology. Check the requested language, destination, template, and project instructions before editing.
+## Hard Constraints
 
-Read the existing text before revising it. Distinguish confirmed content, proposals, and unknowns. Infer the writing context from available material. Ask only when missing context would materially change the result. For a wording edit, keep the investigation and changes local.
+1. **Macro structure & paragraphs (Google Tech Writing):**
+   - State scope, prerequisites, and **non-goals** early; define concepts before the steps that use them.
+   - Start every paragraph with its **topic sentence** (state the conclusion, behavior, or rule in sentence 1).
+   - Limit paragraphs to **≤ 6 sentences** in English (**≤ 4 sentences** in Chinese), covering one topic per paragraph.
+   - Convert any sentence with **≥ 3 parallel items, branches, or steps** into a vertical list (introduced by a complete clause ending in `:`) or a comparison table.
+   - Introduce diagrams and tables *before* showing them and state the key takeaway without narrating every arrow or cell.
+   - Lock terminology: **one term per concept** (no synonym rotation). Spell out acronyms on first use, and **never introduce an acronym used fewer than 3 times**.
+2. **Micro syntax & vocabulary (80% STE-100):**
+   - **Instructions (Procedural):** Imperative verb, **1 action per sentence**, **condition first** (`If X, do Y`), **≤ 20 words** in English (**≤ 30 chars** in Chinese). Never put required actions inside `Note:` or `Tip:` blocks.
+   - **System descriptions & requirements:** Active voice (**≥ 90%**), simple present tense, **≤ 25 words** in English (**≤ 45 chars** in Chinese). Requirements must keep explicit `Actor + must / must not / may + verb`.
+   - **Noun clusters:** Max **3 consecutive nouns** in English (unpack longer clusters with `of`, `for`, `in`, `from`) or max **2 nested `的` modifiers** in Chinese.
+   - **Language routing:**
+     - For **English prose**, enforce the word replacements and grammar rules in [English controls](references/english-controls.md).
+     - For **Chinese or other languages**, enforce the structural equivalents and dummy-verb removal in the [writing guide](references/writing-guide.md#chinese-and-cross-language-controls).
 
-## 2. Draft or revise
+## Gotchas (Common Agent Mistakes)
 
-Read the [writing guide](references/writing-guide.md) to select content, order explanations, and choose useful examples. For English prose, also read [English controls](references/english-controls.md) and apply them after organizing the content. For other languages, use the writing guide without imposing English grammar or word counts.
-
-Use the task's existing content structure and decision process. This Skill provides writing methods; the task's template and domain rules own document formats and approval. Flag unresolved meaning instead of inventing facts or settling decisions through a wording change.
-
-## 3. Check the writing and deliver
-
-Complete the writing guide's [editing passes](references/writing-guide.md#edit-in-separate-passes). Preserve the requested format and flag unresolved meaning.
-
-Return the draft or edit the requested artifact in place. Explain the main changes when useful.
+1. **Corrupting logic to meet length targets:** Dropping `only` from `only if`, rewriting `> 10 MB` as ambiguous `exceeds / up to 10 MB` (or Chinese `超过 10 MB`), weakening `must` into a plain descriptive verb, or turning a `Proposal` / `Not verified` item into established fact. If a shorter rewrite alters meaning, keep the longer phrasing.
+2. **Hallucinating an actor to fix passive voice:** Rewriting `The payload is validated` as `The gateway validates the payload` when the source never specified which component validates it. When the actor is unknown, retain passive voice and flag the ambiguity.
+3. **Renaming code literals or UI labels:** Applying STE vocabulary replacements to code identifiers, CLI flags, config keys, file paths, or UI text (for example, changing `max_retry_attempts` to `max_retry_tries`). Keep exact identifiers untouched.
+4. **Falling into STE lexical traps:**
+   - Using `check` as a verb (`Check the logs` → use `Examine` or `Verify the logs`; in STE, `check` is a noun only, as in `run a health check`).
+   - Using `since` or `as` to mean `because` (`since` is for time only; always use `because` for cause).
+   - Using `while` to mean `although` (`while` is for simultaneous time only; use `although` or split sentences).
+   - Starting a sentence with a naked pronoun (`This`, `It`, `That`) without its noun (`This prevents data loss` → `This lock prevents data loss`).
+5. **Hiding required actions inside informational notes:** Putting a step the reader must execute inside a `Note:` or `Warning:` callout where skimmers miss it (violates STE Rule 5.5).
+6. **Writing Chinese "officialese" (公文腔) and nested `的` chains:** Using empty dummy verbs (`对参数进行合法性校验的工作` → `校验参数合法性`), vague subjectless `被` clauses (`保存后将被重建` → `用户保存配置后，工作进程重建连接池`), or stacking 3+ `的` modifiers.

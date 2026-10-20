@@ -1,4 +1,4 @@
 interface:
   display_name: "Technical Writing"
-  short_description: "Write clear, precise technical documentation"
-  default_prompt: "Use $technical-writing to organize this document for its readers and make the language precise while preserving meaning, language, and required format."
+  short_description: "Write clear, precise technical documentation (Google Tech Writing + 80% STE-100)"
+  default_prompt: "Use $technical-writing to organize this document for its readers (Google Tech Writing) and enforce 80% ASD-STE100 syntax and vocabulary controls while preserving meaning, language, and required format."
